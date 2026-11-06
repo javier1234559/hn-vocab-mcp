@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 
 type Props = {
-  /** Filename under /public/guide */
-  file: string;
+  /** Short folder name under /public/guide — loads `image.png` inside */
+  folder: string;
   alt: string;
 };
 
-/** Screenshot slot — drop files into `public/guide/`. */
-export function GuideImage({ file, alt }: Props) {
-  const path = `/guide/${file}`;
+/** Ảnh minh họa: `public/guide/<folder>/image.png` */
+export function GuideImage({ folder, alt }: Props) {
+  const path = `/guide/${folder}/image.png`;
   const [status, setStatus] = useState<"loading" | "ready" | "missing">(
     "loading",
   );
@@ -37,7 +37,7 @@ export function GuideImage({ file, alt }: Props) {
         <img
           src={path}
           alt={alt}
-          className="max-h-72 w-full object-contain object-center"
+          className="max-h-80 w-full object-contain object-center"
         />
       </div>
     );
@@ -45,9 +45,10 @@ export function GuideImage({ file, alt }: Props) {
 
   return (
     <div className="mt-4 flex min-h-36 flex-col items-center justify-center gap-1 rounded-xl border border-dashed border-[#d5b2c9] bg-[#f9f7f2]/70 px-4 py-8 text-center text-sm text-[#7a6570]">
-      <span className="font-medium text-[#b889a8]">Screenshot coming soon</span>
+      <span className="font-medium text-[#b889a8]">Sẽ thêm ảnh hướng dẫn</span>
       <span className="text-xs">
-        Add: <code className="text-[#3d2f38]">public/guide/{file}</code>
+        Thả vào:{" "}
+        <code className="text-[#3d2f38]">public/guide/{folder}/image.png</code>
       </span>
     </div>
   );
